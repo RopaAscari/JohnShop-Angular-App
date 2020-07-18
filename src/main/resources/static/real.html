@@ -1,0 +1,521 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>John Shop</title>
+    
+    
+    <link rel="stylesheet" type="text/css" href="Css/JohnCss.css">
+    <link rel="shortcut icon" href="Images/shop.ico" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script>src = "JavaScript/JohnScript.js"</script>
+ 
+      <script src="js/angular.min.js"></script>
+    <script src="js/angularApp.js"></script>
+    <script src="js/InventoryController.js"></script>
+    <script src="js/StudentController.js"></script>
+  <script src="js/CartController.js"></script>   
+    <script src="js/OrderController.js"></script>
+    <script src="js/LoginController.js"></script>   
+    <script src="js/OptionController.js"></script>   
+    <script src="js/SharedLogin.js"></script>
+    
+    
+    <script src="js/SharedCart.js"></script>   
+       
+    	<style type="text/css">
+.tftable {font-size:12px;color:#333333;width:100%;border-width: 1px;border-color: #729ea5;border-collapse: collapse;}
+.tftable th {font-size:12px;background-color:#acc8cc;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;text-align:left;}
+.tftable tr {background-color:#d4e3e5;}
+.tftable td {font-size:12px;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;}
+.tftable tr:hover {background-color:#ffffff;}
+</style>  
+</head>
+
+<body ng-app='myApp' >
+{{5+5}} {{RPass}}
+
+    <!--Container for top image-->
+    <div class="MainContainer">
+        <div class="ParallaxContainer">
+            <img src="Images/john1.jpg" height="100%" width="100%">
+        </div>
+
+        <!--Parallax Container that holds all of the info on the white screen-->
+        <div class="ContentContainer">
+            <center><p><h1>JOHN'S SHOP</h1></p></center>
+            <div class="Content">
+                <!--TABLE TO HOLD BOTH BUTTONS-->
+                <!--CART BUTTON-->
+                <button class="btn" id="btn-modal">CART</button>
+                <!--CART MODAL CALL-->
+                <div class="overlay" id="overlay"></div>
+                <div class="modal" id="modal">
+                    <!--MODAL CLOSE BUTTON-->
+                    <button class="modal-close-btn" id="close-btn"><i class="fa fa-times" title=""></i></button>
+                     <div class="theContent" id="content6" ng-controller="InventoryController">
+                                    <h1> View Inventory </h1>
+                                 			<button type="submit" ng-click="allSnacks()" >show Snack database</button>												
+										<table class="tftable" border="1" ng-repeat="item in snacks">
+											<tr><th>ID </th><th>Name </th><th>Price </th><th>Type </th><th>In Stock</th></tr>
+										 		<tr><td> {{item.id}}</td><td> {{item.item}}</td><td>{{item.price}} </td><td>{{item.type}} </td><td>{{item.available}} </td></tr>
+											
+										</table>	
+					</div>					
+                </div>
+
+                <!--LOGIN BUTTON-->
+                &emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+
+                <button class="btn" id="btn-modal2">LOGIN</button>
+                <!--LOGIN MODAL CALL-->
+                <div class="overlay" id="overlay2"></div>
+                <div class="modal" id="modal2">
+                    <!--MODAL CLOSE BUTTON-->
+                    <button class="modal-close-btn" id="close-btn2"><i class="fa fa-times" title=""></i></button>
+                    <!--LOGIN FORM-->
+                    <div class="box w3-card-12">
+                        <div class="title w3-center">
+                            <h3>Login</h3>
+                        </div>
+                        <div class="content"  ng-controller="LoginController" >
+                       
+                            <form method="post"  id="form" >
+                                <div class="input-cont">
+                                    <label class="w3-label w3-text-yellow">Username: </label>
+                                    <span class="icon"><i class="fa fa-user"></i></span>
+                                    <input class="w3-input" type="text" id="uname" ng-model="username"required>
+                                </div>
+                                <br><br>
+                                <div class="input-cont">
+                                    <label class="w3-label w3-text-yellow">Password: </label>
+                                    <span class="icon"><i class="fa fa-key"></i></span>
+                                    <input class="w3-input" type="password" ng-model="password" id="passwd" required>
+                                </div>
+                                <br>
+                                <button class="w3-btn w3-blue" id="login"  ng-model="Pass" ng-click="login()">Login</button>
+                            </form>
+                        </div>
+                        <!--LOGIN FOOTER-->
+                        <div class="footer">
+                            <a class="w3-left" href="#">Forgot Password</a>
+                            <a class="w3-right" href="#">Regster</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!--ROTATING TEXT(NOT IMPLEMENTED YET)-->
+                <br /><br /><br /><br />
+
+                <!--
+                    <div class="text1">
+                    <p>John's shop is</p>
+                        <p>
+                            <span class="word wisteria">reliable.</span>
+                            <span class="word belize">affordable.</span>
+                            <span class="word pomegranate">diverse.</span>
+                            <span class="word green">fast.</span>
+                            <span class="word midnight">incredible.</span>
+                        </p>
+                    </div>
+                -->
+                
+              
+                <!--SIDE NAVIGATION BAR-->
+                <div id="mySidenav" class="sidenav">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><!--FUNCTION TO CLOSE SIDEBAR WITH X BUTTON-->
+                    <li>
+                        <a href="">Snacks</a>
+                        {{Pass[0]}}
+                        <ul class="clearfix">
+                            <li><a href="#content1" class="activeTab">Biscuits</a></li><!--SETS THIS TAB TO ACTIVE-->
+                            <li><a href="#content2">Chips</a></li>
+                            <li><a href="#content3">Peanuts</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">Beverages</a>
+                        <ul class="clearfix">
+                            <li><a href="#content4">Sodas</a></li>
+                            <li><a href="#">Fruit</a></li>
+                            <li><a href="#">Waters</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">Candy</a>
+                        <ul>
+                            <li><a href="">Chocolates</a></li>
+                            <li><a href="">Lollipops</a></li>
+                            <li><a href="">Gums</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                    
+                    {{32473+3432}}
+                        <a href="">Pastry</a>
+                        <ul>
+                            <li><a href="">Patties</a></li>
+                            <li><a href="">Buns</a></li>
+                            <li><a href="">Dried</a></li>
+                        </ul>
+                  </li>
+                  <div  ng-controller="OptionController">
+                  <li ng-hide="Pass[0]">
+                  
+                        <a href="">Orders</a>
+                        <ul>
+                        	<li><a href="">View Items</a></li>
+                             <li><a href="">Add Item</a></li>
+                            <li><a href="">Update Item</a></li>
+                            <li><a href="">Delete Item</a></li>
+                        </ul>
+                  </li>
+                  <li ng-hide="Pass[0]">
+                        <a href="">Completed</a>
+                        <ul>
+                        	<li><a href="">View Items</a></li>
+                          <li><a href="">Add Item</a></li>
+                            <li><a href="">Update Item</a></li>
+                            <li><a href="">Delete Item</a></li>
+                        </ul>
+                  </li>
+                  <li ng-hide="RPass[0]">
+                  
+                        <a href="">Inventory</a>
+                        <ul>
+                        	 <li><a href="#content6" >View Items</a></li>
+                            <li><a  href="#content5">Add Item</a></li>
+                            <li><a href="">Update Item</a></li>
+                            <li><a href="">Delete Item</a></li>
+                        </ul>
+                  </li>
+                  </div>
+                </div>
+
+
+
+                <center>
+                    <!--CONTAINER FOR TABS-->
+                    <section class="container">
+                        <!--DATA WITHIN THE TABS-->
+                        <section class="navContent">
+                            <article>
+                                <!--CONTENT ONE BISCUITS WHICH IS LINKED BY USING THE REFERENCED ID-->
+                                <div class="theContent" id="content1">
+                                    <h1> Biscuits </h1>
+                                    <p>
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <center>
+                                                            <!--LINK TO MODAL VIA TEXT-->
+                                                            <img src="Images/bis1.jpg" height="100%" width="100%">
+                                                            <a class="cta" href="#google" ng-model="selectedItem"  vaule= "snack in snacks">Oreo</a>           
+                                                            <!--MODAL FOR ADD TO CART BUTTON-->
+                                                            <div id="google" class="modaloverlay">
+                                                                <div class="modalrise">
+                                                                    <a href="#close" class="close">&times;</a>
+                                                                    <div>
+                                                                        <table cellspacing="10">
+                                                                            <tr>
+                                                                                <!--ADD TO CART BUTTON-->
+                                                                                <td><a href="#" class="myButton" ng-model="oreo" ng-click="addCart(selectedItem)">Add to Cart</a></td>
+                                                                                <td><a href="#" class="myButton">Check Out</a></td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </center>
+                                                    </td>
+
+                                                    <td>
+                                                        <center>
+                                                            <img src="Images/bis2.jpg" height="100%" width="100%"><a class="cta" href="#google">Fox</a>
+                                                        </center>
+                                                    </td>
+                                                    <td>
+                                                        <center>
+                                                            <img src="Images/bis3.jpg" height="100%" width="100%"><a class="cta" href="#google">Ritz</a>
+                                                        </center>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td> <center><img src="Images/bis4.jpg" height="100%" width="100%">Duplex</center> </td>
+                                                    <td> <center><img src="Images/bis5.jpg" height="100%" width="100%">Digestive</center> </td>
+                                                    <td>  <center><img src="Images/bis6.jpg" height="100%" width="100%">Chips Ahoy</center></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </p>
+                                </div>
+                            </article>
+
+                            <article>
+                                <div class="theContent" id="content2">
+                                    <h1> Chips </h1>
+                                    <p>
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td><center><img src="Images/chips1.jpg" height="100%" width="100%">Doritos</center> </td>
+                                                    <td><center><img src="Images/chips2.jpg" height="100%" width="100%">Lays</center> </td>
+                                                    <td><center><img src="Images/chips3.jpg" height="100%" width="100%">Ruffles</center></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td><center><img src="Images/chips4.jpg" height="100%" width="100%">Chips & Chips</center> </td>
+                                                    <td><center><img src="Images/chips5.jpg" height="100%" width="100%">American Quality</center> </td>
+                                                    <td><center><img src="Images/chips6.jpg" height="100%" width="100%">Mr.Chips</center></td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </p>
+                                </div>
+                            </article>
+
+                            <article>
+                                <div class="theContent" id="content3">
+                                    <h1> Peanuts </h1>
+                                    <p>
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td><center><img src="Images/nuts1.jpg" height="100%" width="100%">Flips</center> </td>
+                                                    <td><center><img src="Images/nuts2.jpg" height="100%" width="100%">Star</center> </td>
+                                                    <td><center><img src="Images/nuts3.jpg" height="100%" width="100%">Fisher</center></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td> <center><img src="Images/nuts4.jpg" height="100%" width="100%">Dormen</center> </td>
+                                                    <td> <center><img src="Images/nuts5.jpg" height="100%" width="100%">Almond Clusters</center> </td>
+                                                    <td>  <center><img src="Images/nuts6.jpg" height="100%" width="100%">Trophy Farm</center></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </p>
+                                </div>
+                            </article>
+
+                            <article>
+                                <div class="theContent" id="content4">
+                                    <h1> Sodas </h1>
+                                    <p>
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td><center><img src="Images/soda1.jpg" height="100%" width="100%">Mountain Dew</center> </td>
+                                                    <td><center><img src="Images/soda2.jpg" height="100%" width="100%">Pepsi</center> </td>
+                                                    <td><center><img src="Images/soda3.jpg" height="100%" width="100%">Sprite</center></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td> <center><img src="Images/soda4.jpg" height="100%" width="100%">Ting</center> </td>
+                                                    <td> <center><img src="Images/soda5.jpg" height="100%" width="100%">Schwepps</center> </td>
+                                                    <td>  <center><img src="Images/soda6.jpg" height="100%" width="100%">Fanta</center></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </p>
+                                </div>
+                            </article>
+                             <article>
+                                <div class="theContent" id="content5">
+                                    <h1> Add Inventory </h1>
+                                    
+                                        <form ng-controller="InventoryController">
+                                        <h5> Enter Item Name</h5> <input ng-model="snack.item">                                     
+										<br>
+										<h5> Enter Price</h5> <input ng-model="snack.price">	
+										<br>
+										<h5> Enter type</h5> <input ng-model="snack.type">
+										<br>
+										<h5> Enter Amount</h5> <input ng-model="snack.available">			
+										<br> 
+										<button ng-click="addSnack()">submit</button>
+										
+										<h5>Successfully added {{snack.available}} items   </h5>                                       
+                                        </form>
+                                    
+                                </div>
+                            </article>
+                              <article>
+                                <div class="theContent" id="content6" ng-controller="InventoryController">
+                                    <h1> View Inventory </h1>
+                                 			<button type="submit" ng-click="allSnacks()" >show Snack database</button>												
+										<table class="tftable" border="1" ng-repeat="item in snacks">
+											<tr><th>ID </th><th>Name </th><th>Price </th><th>Type </th><th>In Stock</th></tr>
+											<tr><td> {{item.id}}</td><td> {{item.item}}</td><td>{{item.price}} </td><td>{{item.type}} </td><td>{{item.available}} </td></tr>
+											
+										</table>										                                   
+                                   
+										 <!-- <ul>
+										        <li ng-repeat="snack in snacks" >
+										            {{snack.item}}  {{snack.price}} {{snack.type}} {{snack.available}}
+										        </li>
+										  </ul>       --> 
+                                </div>
+                            </article>
+                        </section>
+                    </section>
+                </center>
+
+                <br /><br /><br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br /><br /><br />
+
+                <!--BUTTON TO TRIGGER THE SIDEBAR-->
+                <div class="wrapper" id="main">
+                    <center> <a id="" class="fancy-button bg-gradient2" style="font-size:30px;cursor:pointer" onclick="openNav()"><span><i class="fa fa-plus"></i>+</span></a></center>
+                </div>
+
+            </div>
+            <br /><br /><br />
+        </div>
+
+        <!--FOOTER-->
+   		<div class="mobile-bottom-bar">
+            <a href="#" class="footer-link">
+                <i class="fa fa-sign-out"></i> <span class='footer-text'>© 2019 Copyright:  John's Delivery Service</span>
+            </a>
+        </div>
+    </div>
+
+    
+
+
+    <script>
+
+                                 //CART MODAL//
+        document.getElementById('btn-modal').addEventListener('click', function () {
+            document.getElementById('overlay').classList.add('is-visible');
+            document.getElementById('modal').classList.add('is-visible');
+        });
+
+        document.getElementById('close-btn').addEventListener('click', function () {
+            document.getElementById('overlay').classList.remove('is-visible');
+            document.getElementById('modal').classList.remove('is-visible');
+        });
+        document.getElementById('overlay').addEventListener('click', function () {
+            document.getElementById('overlay').classList.remove('is-visible');
+            document.getElementById('modal').classList.remove('is-visible');
+        });
+
+                               //LOGIN MODAL//
+
+        document.getElementById('btn-modal2').addEventListener('click', function () {
+            document.getElementById('overlay2').classList.add('is-visible');
+            document.getElementById('modal2').classList.add('is-visible');
+        });
+
+        document.getElementById('close-btn2').addEventListener('click', function () {
+            document.getElementById('overlay2').classList.remove('is-visible');
+            document.getElementById('modal2').classList.remove('is-visible');
+        });
+        document.getElementById('overlay2').addEventListener('click', function () {
+            document.getElementById('overlay2').classList.remove('is-visible');
+            document.getElementById('modal2').classList.remove('is-visible');
+        });
+
+
+                            //FORM VALIDATION//
+
+      /*  $(document).ready(function () {
+            function validate() {
+                var uname = $('#uname'),
+                    passwd = $('#passwd');
+
+                if (uname === "" && passwd === "") {
+                    alert('Please enter the Username and Password !');
+                    return false;
+                } else {
+                    alert('Correct !');
+                    return false;
+                }
+            }
+        });*/
+
+
+                                        //SLIDESHOW//
+
+                                                //SIDE NAV BAR//
+
+
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "180px";
+            var a = document.getElementById("mySidenav").value;
+            if (a != 0) {
+            }
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+
+
+                                                    //ROTATING TEXT//
+
+        var words = document.getElementsByClassName('word');
+        var wordArray = [];
+        var currentWord = 0;
+
+      //  words[currentWord].style.opacity = 1;
+        for (var i = 0; i < words.length; i++) {
+            splitLetters(words[i]);
+        }
+
+       /* function changeWord() {
+            var cw = wordArray[currentWord];
+            var nw = currentWord == words.length - 1 ? wordArray[0] : wordArray[currentWord + 1];
+            for (var i = 0; i < cw.length; i++) {
+                animateLetterOut(cw, i);
+            }
+
+            for (var i = 0; i < nw.length; i++) {
+                nw[i].className = 'letter behind';
+                nw[0].parentElement.style.opacity = 1;
+                animateLetterIn(nw, i);
+            }
+
+            currentWord = (currentWord == wordArray.length - 1) ? 0 : currentWord + 1;
+        }*/
+
+        function animateLetterOut(cw, i) {
+            setTimeout(function () {
+                cw[i].className = 'letter out';
+            }, i * 80);
+        }
+
+        function animateLetterIn(nw, i) {
+            setTimeout(function () {
+                nw[i].className = 'letter in';
+            }, 340 + (i * 80));
+        }
+
+        function splitLetters(word) {
+            var content = word.innerHTML;
+            word.innerHTML = '';
+            var letters = [];
+            for (var i = 0; i < content.length; i++) {
+                var letter = document.createElement('span');
+                letter.className = 'letter';
+                letter.innerHTML = content.charAt(i);
+                word.appendChild(letter);
+                letters.push(letter);
+            }
+
+            wordArray.push(letters);
+        }
+        //changeWord();
+     //  setInterval(changeWord, 4000);
+
+    </script>
+
+</body>
+</html>

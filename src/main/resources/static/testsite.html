@@ -1,0 +1,343 @@
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>John Shop</title>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angularApp.js"></script>
+    <script src="js/InventoryController.js?v=2"></script>
+    <script src="js/StudentController.js"></script>
+    <script src="js/CartController.js"></script>   
+    <script src="js/OrderController.js"></script>
+    <script src="js/LoginController.js"></script>   
+    <script src="js/OptionController.js"></script>   
+    <script src="js/SharedLogin.js"></script>
+    
+                   
+    <script src="js/SharedCart.js"></script>   
+       
+
+</head>
+<body  ng-app="myApp" >
+
+{{3+3}}
+
+
+ <form ng-controller="InventoryController" >
+   <h1>Add Snack item to Cart</h1>       
+    
+    <button type="submit" ng-click="allSnacks()" >show Snack database</button>
+			<select ng-model="snack.id">
+				<option ng-repeat="snack in snacks" value="{{snack.id}}"> {{snack.id}} {{snack.item}}</option>
+			</select>
+	 
+	   <button  type="submit"  ng-click="getSnack(snack.id)">get to Cart</button>
+       
+       <br>
+		 <button type="submit" ng-click="allSnacks()" >show Snack database</button>
+			<select ng-model="snack.id">
+				<option ng-repeat="snack in snacks" value="{{snack.id}}"> {{snack.id}} {{snack.item}}</option>
+			</select>
+	   
+	   <button  type="submit"  ng-click="getSnack(snack.id)">get to Cart</button>
+
+			
+		
+       <button type="submit" ng-click="allCarts()" >show Cart database</button>
+      
+			<select ng-model="cart.id">
+				<option ng-repeat="cart in carts" value="{{cart.id}}"> {{cart.id}} {{cart.item}}</option>
+			</select>
+		tracking the cart id {{cart.id}} {{cart.item}} {{cart.price}} {{cart.type}} {{cart.available}}
+       <br>
+			<button  type="submit"   ng-click="addCart()">Add to Cart</button>
+    </form>
+
+
+
+
+
+
+
+<br><br><br><br><br><br><br><br><br><br>
+   <form ng-controller="InventoryController" >
+  	   <h1>Add Snack item</h1>       
+       <p>Name</p> <input type="text" ng-model="snack.item">
+       <br>
+       <p> Price</p> <input type="text"   ng-model="snack.price">
+       <br>
+       <p> Type</p> <input type="text"   ng-model="snack.type">
+       
+       <p> Stock</p> <input type="text"   ng-model="snack.available">
+       
+
+       <button  type="submit"  ng-click="addSnack()">Add Snack</button>
+       <br>
+       <button type="submit" ng-click="allSnacks()" >show Snack database</button>
+			<select ng-model="snack.id">
+				<option ng-repeat="snack in snacks" > {{snack.id}} {{snack.item}}</option>
+		</select>												
+    </form>
+
+
+
+    <form ng-controller="CartController"  ng-model="cart.id">
+  	 <h1>Add Cart item</h1>
+       <p>Name</p> <input type="text" ng-model="cart.item">
+       <br>
+       <p> Price</p> <input type="text"   ng-model="cart.price">
+       
+       <p> Type</p> <input type="text"   ng-model="cart.type">
+       
+       <p> Quantity</p> <input type="text"   ng-model="cart.available">
+       
+
+       
+       <button type="submit" ng-click="allCarts()" >show Cart database</button>
+      tracking the cart id {{cart.id}} {{cart.itemName}} {{cart.price}} {{cart.type}} {{cart.available}}
+			<select ng-model="cart.id">
+				<option ng-repeat="cart in carts" value="{{cart.id}}">{{cart.id}} {{cart.item}}</option>
+			</select>
+			<button type="submit" ng-click="getCart();addCart()">Add cart</button> <br><br>
+       <br>
+    </form>        
+
+<div ng-controller="InventoryController"> 
+		<form > 		 
+			<button type="submit" ng-click="allSnacks()" >show Snack database</button>
+			<select ng-model="snack.id">
+				<option ng-repeat="snack in snacks" value="{{snack.id}}"> {{snack.id}} {{snack.item}}</option>
+			</select>
+			{{snack.id}} 
+			 <button ng-click="getSnack(snack.id)" > confirm </button>	
+			 <p  value="{{snack.id}}">{{snack.id}} {{snack.item}}</p> 	 				
+	  
+		</form>
+ </div>
+ 
+
+<div ng-controller="CartController" >
+   {{ cart.id }}
+   {{ cart.itemName }}
+   {{ cart.price }}
+   {{ cart.type }}
+   {{ cart.quantity }}
+
+   <br>
+   All items in Cart :
+  
+   <button type="submit" ng-click="pushCart()">push to cart</button>
+    <ul>
+        <li ng-repeat="cart in carts" value="cart.id">
+            {{ cart.itemName }}  {{cart.price}} {{cart.quantity}}
+        </li>
+    </ul>
+     <button type="submit" ng-click="addCart()">Add to Cart</button>
+</div>
+
+
+
+
+ <hr>
+ <br><br><br><br>
+ 
+ 
+<div ng-controller="StudentController">
+
+	{{update}}<br>
+	 {{student.id}}
+	
+	
+	<button type="submit" ng-click="allStudents()" >show student database</button><br>
+	  	
+<!-- 	 <select ng-model="student.id">
+		<option ng-repeat="student in students" value="{{student.id}}">{{student.name}}</option>
+	</select>
+	
+	<button type="submit" ng-click="getStudent(student.id)" >add student record</button><br>
+	 -->
+	 <select ng-model="student.id">
+		<option ng-repeat="student in students" value="{{student.id}}">{{student.name}}</option>
+	</select>
+	
+	<button type="submit" ng-click="getStudent(student.id);" >add student record</button><br>
+	
+	<p   value="{{student.id}}">{{student.id}} {{student.name}}</p> 	 
+	<p   value="{{student.id}}">{{student.id}} {{student.name}}</p>				
+	
+		<button type="submit" ng-click="addStudent()" ng-model="delete" >add student {{student.id}}</button>	
+		
+
+       <br>
+	  <button ng-hide="delete"  ng-click="deleteStudent(student.id)" ng-model="Pass" > confirm </button>	  	 	
+</div>
+ 
+ 
+ 
+
+  <br><br><br><br><br><br>
+<div ng-controller="StudentController">
+
+	{{update}}<br>
+	
+	 <select ng-model="selectedStudent">
+		<option ng-repeat="student in students" value="{{student.id}}">{{student.name}}</option>
+		
+	</select>
+	
+	<button type="submit" ng-click="allStudents()" >show student database</button><br>
+	  
+	
+	
+	<button type="submit" ng-click="IsUpdate()" ng-model="update" >update student {{selectedStudent}}</button>
+	
+	
+	<form ng-hide="update" >
+	   <p>New Name</p> <input type="text" ng-model="student.name" >
+       <br>
+       <p>New Student Id</p> <input type="text" ng-model="student.studentId">
+       <br>
+	  <button ng-click="updateStudent(selectedStudent)" ng-model="Pass" > confirm </button>	  
+	</form>
+ 		
+
+</div>
+ 
+ 
+ 
+ 
+ 
+ <br><br><br><br><br><br>
+ 
+ Hiding works great with successful login
+<div ng-controller="LoginController">
+
+ <p> {{Pass}}</p>
+
+<form>
+  <p>Usersame</p>  <input type="text" ng-model="username">
+  <br>
+  <p>Password</p>  <input type="text" ng-model="password">  
+  <br>
+  <button ng-click="login()" ng-model="Pass" > Login </button>
+</form>
+
+
+
+    <p ng-hide="Pass"> success!! at least you managed to do something right</p> 
+</div>
+ 
+
+
+
+    <form ng-controller="StudentController" >
+   
+       <p>Name</p> <input type="text"   ng-model="student.name"  >
+       <br>
+       <p>Student Id</p> <input type="text"  ng-model="student.studentId">
+
+       <button type="submit" ng-click="addStudent()">Add Student</button>
+       <br>
+    </form>
+
+
+
+
+
+<div ng-controller="StudentController">
+   All Students :
+   <button type="submit" ng-click="allStudents()" >show student database</button>
+    <ul>
+        <li ng-repeat="student in students" >
+            {{student.name}}  {{student.studentId}}
+        </li>
+    </ul>
+</div>
+
+
+Hide HTML: <input type="checkbox"  ng-model="notmyvar" >
+  <header class="header"  >
+
+        <h1 class="logo"><a href="#">Ascari</a></h1>
+        <ul class="main-nav">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Services</a></li>
+            <li ng-hide="notmyvar" ><a href="#">About</a></li>
+            <li ng-hide="myVar"><a href="#">Contact</a></li>
+        </ul>
+    </header>
+
+<hr>
+
+
+
+    <form ng-controller="InventoryController" >       
+       
+       <p>Item</p> <input type="text" ng-model="snack.item">
+       <br>
+       <p>Price</p> <input type="text" ng-model="snack.price" >
+       <br>
+       <p>Type</p> <input type="text" ng-model="snack.type">
+        <br>
+       <p>Available</p> <input type="text" ng-model="snack.available">
+
+       <button type="submit" ng-click="addSnack()">Add Snack</button>
+       <br>
+    </form>
+
+
+
+
+
+
+<div ng-controller="InventoryController">
+   All Snacks :
+   <button type="submit" ng-click="allSnacks()" >show Snack database</button>
+    <ul>
+        <li ng-repeat="snack in snacks" >
+            {{snack.item}}  {{snack.price}} {{snack.type}} {{snack.available}}
+        </li>
+    </ul>
+</div>
+
+
+<hr>
+
+
+
+    <form ng-controller="OrderController" >
+       <p>Item</p> <input type="text" ng-model="order.itemName" >
+       <br>
+       <p>Amount Due</p> <input type="text" ng-model="order.amtDue">
+       <br>
+       <p>Location</p> <input type="text" ng-model="order.location">
+       <br>
+       <p>Student Name </p> <input type="text" ng-model="order.name">
+       <br>
+       <p>Student Id</p> <input type="text" ng-model="order.studentId">
+
+       <button type="submit" ng-click="addOrder()">Add Order</button>
+       <br>
+    </form>
+
+
+
+
+
+
+
+    
+<div ng-controller="OrderController">
+All Orders :
+   <button type="submit" ng-click="allOrders()" >show Order database</button>
+    <ul>
+        <li ng-repeat="order in orders" >
+                    {{order.itemName}} {{order.amtDue}} {{order.location}}  {{order.name}}  {{order.studentId}}
+        </li>
+    </ul>
+</div>
+
+
+
+</body>
+</html>
